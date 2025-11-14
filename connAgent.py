@@ -25,7 +25,8 @@ def update_response(content):
 def stream_response_from_api(user_text=None):
     global is_receiving
     is_receiving = True
-    update_response("开始接收API响应...")
+    # update_response("开始接收API响应...")
+    print("开始接收API响应...")
     
     # 定义 API 的 URL
     url = 'https://open.hunyuan.tencent.com/openapi/v1/agent/chat/completions'
@@ -89,7 +90,8 @@ def stream_response_from_api(user_text=None):
         with requests.post(url, headers=headers, json=data, stream=True) as response:
             response.raise_for_status()
             
-            update_response("\n正在接收流式响应...")
+            # update_response("\n正在接收流式响应...<br>")
+            print("正在接收流式响应...")
             
             # 处理流式响应
             for chunk in response.iter_lines():
@@ -113,7 +115,7 @@ def stream_response_from_api(user_text=None):
                             if 'delta' in choice and 'content' in choice['delta']:
                                 content = choice['delta']['content']
                                 if '\n' in content:
-                                    print("有换行符号")
+                                    # print("有换行符号")
                                     content = content.replace('\n', '<br>')
                                 
                                 update_response(content)
@@ -122,7 +124,8 @@ def stream_response_from_api(user_text=None):
                                 update_response(content)
                     except json.JSONDecodeError:
                         # 如果不是有效的JSON，直接添加原始内容
-                        update_response(f"非JSON响应: {chunk_str}")
+                        # print("收到非JSON数据")
+                        update_response(f" {chunk_str}")
             
             update_response("\n流式响应接收完成")
             
@@ -173,4 +176,5 @@ def status():
     }
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
