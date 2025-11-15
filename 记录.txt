@@ -1,4 +1,15 @@
 腾讯元器的地址
 https://yuanqi.tencent.com/my-creation/agent
 
+发送等待翻译的语句 get地址：
 http://localhost:5000/?text={word}
+
+------------
+下载chromium的地址
+https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html
+https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Win_x64/1545419/
+在该文件夹内，找到并点击下载名为 chrome-win.zip 的压缩文件。
+把它解压到C:\Chromium_Test\
+使用这个快捷方式运行它
+"C:\chromium-test\chrome.exe" --remote-debugging-port=9222 --user-data-dir="C:\chromium-test\Chromium_Profiles\Profile_1"
+
